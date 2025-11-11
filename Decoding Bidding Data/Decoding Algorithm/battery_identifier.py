@@ -188,10 +188,4 @@ def summarize_bids(df):
 
     return summary, bid_long
 
-sql_code = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\_select_from_select_from_asset_xref_ax_resource_xref_rx_select_d_202510211016.csv")
-
-# Filter battery_candidates_1 for rows where is_battery_candidate is False
-non_battery = battery_candidates_1[battery_candidates_1['is_battery_candidate'] == False]
-
-# Find rows in sql_code whose asset_xref is in non_battery
-result = sql_code[sql_code['asset_xref'].isin(non_battery['asset_xref'])]
+sql_code = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\_select_from_select_from_asset_xref_ax_resource_xref_rx_select_d_202511111201.csv")
