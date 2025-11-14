@@ -85,7 +85,7 @@ print("✅ Finished solar hours processing")
 def identify_solar_candidates(df, solar_hours_by_day,
                               min_solar_output_hours=5,
                               max_offsolar_output_hours=4,
-                              solar_day_fraction_threshold=0.3):
+                              solar_day_fraction_threshold=0.5):
     """
     Identify solar generator candidates based on hourly bid patterns.
     """
@@ -143,6 +143,7 @@ print("✅ Finished solar candidate identification")
 
 positive_solar = solar_candidates[solar_candidates["is_solar_candidate"]]
 non_solar = solar_candidates[~solar_candidates["is_solar_candidate"]]
+
 
 print(f"\n🔆 Identified {len(positive_solar)} solar candidates out of {len(solar_candidates)} total assets.")
 print("\nTop 10 solar-like assets by solar_day_fraction:")
