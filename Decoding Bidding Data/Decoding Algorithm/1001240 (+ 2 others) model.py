@@ -32,7 +32,7 @@ BASE = "/Users/nupri/Desktop"
 ASSET_XREF_FILE = os.path.join(BASE, "asset_xrefs.csv")
 BID_FOLDER = os.path.join(BASE, "2024 DAM Bid Data")
 GAS_PRICE_FILE = os.path.join(BASE, "Energy_Gas_Prices_2024.csv")
-LOAD_FCST_FILE = os.path.join(BASE, "load_tesla_fcst_202511162319.csv")
+LOAD_FCST_FILE = os.path.join(BASE, "load_forecasts_2024.csv")
 OUT_DIR = os.path.join(BASE, "1001438rf_model_output")
 os.makedirs(OUT_DIR, exist_ok=True)
 
