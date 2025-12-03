@@ -29,7 +29,7 @@ plt.rcParams['figure.figsize'] = (12, 6)
 # User config
 # ---------------------------
 BASE = "/Users/nupri/Desktop"
-ASSET_XREF_FILE = os.path.join(BASE, "asset_xref_202509121109.csv")
+ASSET_XREF_FILE = os.path.join(BASE, "asset_xrefs.csv")
 BID_FOLDER = os.path.join(BASE, "2024 DAM Bid Data")
 GAS_PRICE_FILE = os.path.join(BASE, "Energy_Gas_Prices_2024.csv")
 LOAD_FCST_FILE = os.path.join(BASE, "load_tesla_fcst_202511162319.csv")
