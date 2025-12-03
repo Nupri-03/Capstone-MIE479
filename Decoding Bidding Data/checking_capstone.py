@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 16 22:50:42 2025
-
-@author: harvi
-"""
-
 import pandas as pd
 
 correct_answer = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\GEN_META_CAPSTONE.xlsx")
@@ -83,3 +76,4 @@ print("Out of the 113 assets Jacob found, this is the split on what was accurate
 
 counts2 = counts/(counts[0] +  counts[1] + counts[2])
 print(counts2)
+
