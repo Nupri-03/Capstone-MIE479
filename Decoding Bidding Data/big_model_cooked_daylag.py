@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-
 # data_prep_for_bucketing.py
 # Requirements: pandas, numpy, tqdm, xgboost, scikit-learn
 # Run in Colab or local. Adjust paths to your zip/folders.
@@ -30,7 +23,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # ---------- USER PATHS / SETTINGS ----------
 BIDS_ZIP_OR_FOLDER = r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\2024 DAM Bid Data.zip"
-LOAD_CSV =  r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\load_tesla_fcst_202511162319.csv"
+LOAD_CSV =  r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\load_forecasts_2024.csv"
 POWER_PRICING_CSV = r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\power_pricing.csv"
 GAS_PRICES_CSV =  r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\Gas_Prices_2024.csv"  # optional
 RENEWABLES_CSV = r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\Renewables_2024.csv"
@@ -1045,4 +1038,5 @@ print("Clearing price R2:", r2_price)
 df_model_full.to_csv("df_model_mw_predictions.csv", index=False)
 clearing_compare.to_csv("clearing_price_predictions.csv", index=False)
 print("Saved MW predictions and clearing price predictions.")
+
 '''
