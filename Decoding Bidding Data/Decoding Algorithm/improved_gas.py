@@ -11,7 +11,7 @@ pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\energy_gas_prices_2023.c
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
-hourly_pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\_SELECT_FROM_caiso_lmp_dam_AS_t1_INNER_JOIN_caiso_pnodes_xref_AS_202509290833.csv")
+hourly_pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\aggregate_hourly_pricing.csv")
 
 
 #Load in x number of days worth of data
@@ -239,3 +239,4 @@ def classify_gas_confidence(df):
 
 
 gas_scores = classify_gas_confidence(bids_with_prices)
+
