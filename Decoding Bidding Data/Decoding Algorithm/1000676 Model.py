@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,7 +9,7 @@ import glob
 # === LOAD DATA ==============================================
 # ============================================================
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xref_202509121109.csv")
+asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
 
 folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2024 DAM Bid Data"
 files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
@@ -88,7 +87,7 @@ pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\Energy_
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
-load_forecast = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\load_tesla_fcst_202511162319.csv")
+load_forecast = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\load_forecasts_2024.csv")
 load_forecast = load_forecast[load_forecast['nodename'].isin(['CA ISO-TAC'])]
 
 import re
@@ -399,6 +398,7 @@ for c,model in models.items():
     )
     plt.suptitle(f"PDP — Cluster {c}")
     plt.show()
+
 
 
 
