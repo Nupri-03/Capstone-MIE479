@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 13 15:44:00 2025
-
-@author: jliu
-"""
-
 import pandas as pd
 import datetime as dt
 import os
 import glob
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xref_202509121109.csv")
+asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
 gen_meta_data = pd.read_csv(
     r"C:\Users\jliu\Downloads\GEN_META_CAPSTONE.csv",
     encoding="latin-1"
@@ -256,6 +249,7 @@ wide = wide.merge(
     on="asset_xref",
     how="left"
 )
+
 
 
 
