@@ -1,19 +1,11 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov  9 19:57:00 2025
-
-@author: nupri
-"""
-
 import pandas as pd
 import numpy as np
 import os
 import glob
 
 BASE = "/Users/nupri/Desktop"
-ASSET_XREF_FILE = os.path.join(BASE, "asset_xref_202509121109.csv")
-RENEWABLES_FILE = os.path.join(BASE, "caiso_sld_ren_fcst_202509191057.csv")
+ASSET_XREF_FILE = os.path.join(BASE, "asset_xrefs.csv")
+RENEWABLES_FILE = os.path.join(BASE, "renewables_2023.csv")
 BID_FOLDER = os.path.join(BASE, "2023 DAM Bid Data")
 OUT_FILE = os.path.join(BASE, "likely_wind_candidates.csv")
 LOOKBACK_DAYS = 365
