@@ -1,20 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 21 06:56:57 2025
-
-@author: jliu
-"""
-
 import pandas as pd
 import datetime as dt
 import os
 import glob
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xref_202509121109.csv")
+asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
 
-renewables = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\caiso_sld_ren_fcst_202509191057.csv")
+renewables = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\renewables_2023.csv")
 
-pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\_SELECT_s_x_FROM_west_fin_ice_settlement_s_JOIN_west_fin_ice_xre_202509191043.csv")
+pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\energy_gas_prices_2023.csv")
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
@@ -188,4 +181,5 @@ def summarize_bids(df):
 
     return summary, bid_long
 
-sql_code = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\_select_from_select_from_asset_xref_ax_resource_xref_rx_select_d_202511111201.csv")
+sql_code = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\hourly_hub_prices_2023.csv")
+
