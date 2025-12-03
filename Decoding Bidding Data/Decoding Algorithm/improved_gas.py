@@ -1,19 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 21 12:11:24 2025
-
-@author: harvi
-"""
 import pandas as pd
 import datetime as dt
 import os
 import glob
 
-asset_type = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\asset_xref_202509121109.csv")
+asset_type = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\asset_xrefs.csv")
 
-renewables = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\caiso_sld_ren_fcst_202509191057.csv")
+renewables = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\renewables_2023.csv")
 
-pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\_SELECT_s_x_FROM_west_fin_ice_settlement_s_JOIN_west_fin_ice_xre_202509191043.csv")
+pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\energy_gas_prices_2023.csv")
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
@@ -31,7 +25,7 @@ daily_dfs = [pd.read_csv(file) for file in files_to_load]
 one_day = pd.concat(daily_dfs, ignore_index=True)
 
 #This is the dataframe with the solar identified and some of the generators identified
-confirmed_assets = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\resource_xref_202509121107.csv")
+confirmed_assets = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\resource_xrefs.csv")
 confirmed_assets = confirmed_assets[confirmed_assets['gen_type'] != 'SOLAR']
 confirmed_assets['asset_xref'] = confirmed_assets['resource_xref']
 
@@ -242,5 +236,6 @@ def classify_gas_confidence(df):
         })
     
     return pd.DataFrame(results)
+
 
 gas_scores = classify_gas_confidence(bids_with_prices)
