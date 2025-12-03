@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Fixed Generator Bidding Prediction Model
-Fixes all data leakage and alignment issues:
- - Proper train/val split BEFORE any feature engineering
- - No target leakage in features (all lags properly shifted)
- - Clustering fit only on training data
- - Correct index alignment for cluster assignment
- - No future information in rolling statistics
-"""
+
+# individual model for 1001348, 1001240, 1001438
 
 import os
 import glob
