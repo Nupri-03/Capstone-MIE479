@@ -1,9 +1,3 @@
-"""
-Hydro Candidate Detector — CAISO Bid Data
-Author: jliu
-Date: 2025-10-22
-"""
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,8 +9,8 @@ import glob
 # === LOAD DATA ==============================================
 # ============================================================
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xref_202509121109.csv")
-electricity_pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\_SELECT_FROM_caiso_lmp_dam_dsp_JOIN_caiso_pnodes_xref_px_ON_dsp__202510221333.csv")
+asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+electricity_pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\hourly_pricing_data.csv")
 
 folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2023 DAM Bid Data"
 files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
@@ -266,4 +260,5 @@ for j in range(i + 1, len(axes)):
 
 fig.suptitle("Monthly Average Generation — Likely Hydro Assets", fontsize=14)
 fig.tight_layout(rect=[0, 0, 1, 0.97])
+
 plt.show()
