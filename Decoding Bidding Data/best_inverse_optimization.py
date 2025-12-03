@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 26 17:21:13 2025
-
-@author: karathah
-"""
-
 # data_prep_for_bucketing.py
 # Requirements: pandas, numpy, tqdm, xgboost, scikit-learn
 # Run in Colab or local. Adjust paths to your zip/folders.
@@ -27,7 +20,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # ---------- USER PATHS / SETTINGS ----------
 BIDS_ZIP_OR_FOLDER = r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\2024 DAM Bid Data.zip"
-LOAD_CSV =  r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\load_tesla_fcst_202511162319.csv"
+LOAD_CSV =  r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\load_forecasts_2024.csv"
 POWER_PRICING_CSV = r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\power_pricing.csv"
 GAS_PRICES_CSV =  r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\Gas_Prices_2024.csv"  # optional
 RENEWABLES_CSV = r"\\VSRV2\C.Homes$\karathah\Desktop\Data Required for CAPSTONE Modelling\Renewables_2024.csv"
@@ -784,3 +777,4 @@ plt.xlabel("Price Residual ($/MWh)")
 plt.ylabel("Frequency")
 plt.tight_layout()
 plt.show()
+
