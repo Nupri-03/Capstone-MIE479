@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Identify likely solar generators based on bidding behavior.
-Improved version: adjusted thresholds, removed overly strict filters,
-and added diagnostics to verify solar-hour coverage and candidate counts.
-"""
-
 import pandas as pd
 import datetime as dt
 import os
@@ -18,9 +11,9 @@ LOCAL_FOLDER_PATH = "/Users/juliarice/Desktop/capstone"
 
 print("Loading input files...")
 
-asset_type = pd.read_csv(LOCAL_FOLDER_PATH + "/asset_xref_202509121109.csv")
-renewables = pd.read_csv(LOCAL_FOLDER_PATH + "/caiso_sld_ren_fcst_202509191057.csv")
-pricing = pd.read_csv(LOCAL_FOLDER_PATH + "/_SELECT_s_x_FROM_west_fin_ice_settlement_s_JOIN_west_fin_ice_xre_202509191043.csv")
+asset_type = pd.read_csv(LOCAL_FOLDER_PATH + "/asset_xrefs.csv")
+renewables = pd.read_csv(LOCAL_FOLDER_PATH + "/renewables_2023.csv")
+pricing = pd.read_csv(LOCAL_FOLDER_PATH + "/energy_gas_prices_2023.csv")
 
 electricity_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
