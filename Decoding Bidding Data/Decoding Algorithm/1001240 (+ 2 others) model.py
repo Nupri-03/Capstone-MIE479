@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 # individual model for 1001348, 1001240, 1001438
 
 import os
