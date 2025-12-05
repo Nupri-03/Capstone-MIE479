@@ -1,6 +1,5 @@
 # data_prep_for_bucketing.py
 # Requirements: pandas, numpy, tqdm, xgboost, scikit-learn
-# Run in Colab or local. Adjust paths to your zip/folders.
 
 import pandas as pd
 import numpy as np
@@ -777,5 +776,6 @@ plt.xlabel("Price Residual ($/MWh)")
 plt.ylabel("Frequency")
 plt.tight_layout()
 plt.show()
+
 
 
