@@ -3,10 +3,17 @@ import numpy as np
 import os
 import glob
 
-BASE = "/Users/nupri/Desktop"
+#BASE = "/Users/nupri/Desktop"
+#ASSET_XREF_FILE = os.path.join(BASE, "asset_xrefs.csv")
+#RENEWABLES_FILE = os.path.join(BASE, "renewables_2023.csv")
+#BID_FOLDER = os.path.join(BASE, "2023 DAM Bid Data")
+
+BASE = "Data Required for CAPSTONE Modelling"
+
 ASSET_XREF_FILE = os.path.join(BASE, "asset_xrefs.csv")
-RENEWABLES_FILE = os.path.join(BASE, "renewables_2023.csv")
-BID_FOLDER = os.path.join(BASE, "2023 DAM Bid Data")
+RENEWABLES_FILE = os.path.join(BASE, "Renewables_2024.csv")
+BID_FOLDER = os.path.join(BASE, "2024 DAM Bid Data.zip")
+
 OUT_FILE = os.path.join(BASE, "likely_wind_candidates.csv")
 LOOKBACK_DAYS = 365
 
