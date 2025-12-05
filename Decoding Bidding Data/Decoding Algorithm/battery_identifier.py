@@ -3,17 +3,37 @@ import datetime as dt
 import os
 import glob
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+BASE = "Data Required for CAPSTONE Modelling"
 
-renewables = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\renewables_2023.csv")
+ASSET_XREF_FILE      = os.path.join(BASE, "asset_xrefs.csv")
+RENEWABLES_FILE      = os.path.join(BASE, "Renewables_2024.csv")
+PRICING_FILE         = os.path.join(BASE, "Energy_Gas_Prices_2024.csv")
+BID_FOLDER           = os.path.join(BASE, "2024 DAM Bid Data.zip")   # folder with CSVs
+HUB_PRICES_FILE      = os.path.join(BASE, "Hourly_Hub_Prices_2024.csv")
 
-pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\energy_gas_prices_2023.csv")
+asset_type = pd.read_csv(ASSET_XREF_FILE)
+
+renewables = pd.read_csv(RENEWABLES_FILE)
+
+pricing = pd.read_csv(PRICING_FILE)
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
+# Load in x number of days worth of data
+folder_path = BID_FOLDER
+files = sorted(glob.glob(os.path.join(folder_path, "*.csv")))
+
+#asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+
+#renewables = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\Renewables_2024.csv")
+
+#pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\Energy_Gas_Prices_2024.csv")
+#electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
+#gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
+
 #Load in x number of days worth of data
-folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2023 DAM Bid Data"
-files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
+#folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2024 DAM Bid Data.zip"
+#files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
 
 x = 365 
 files_to_load = files[:x]  
@@ -181,5 +201,6 @@ def summarize_bids(df):
 
     return summary, bid_long
 
-sql_code = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\hourly_hub_prices_2023.csv")
+sql_code = pd.read_csv(HUB_PRICES_FILE)
+
 
