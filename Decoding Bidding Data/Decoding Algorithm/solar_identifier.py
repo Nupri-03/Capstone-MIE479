@@ -3,24 +3,41 @@ import datetime as dt
 import os
 import glob
 
-LOCAL_FOLDER_PATH = "/Users/juliarice/Desktop/capstone"
+#LOCAL_FOLDER_PATH = "/Users/juliarice/Desktop/capstone"
 
 # -------------------------------------------------------
 # LOAD INPUT FILES
 # -------------------------------------------------------
 
-print("Loading input files...")
+#print("Loading input files...")
 
-asset_type = pd.read_csv(LOCAL_FOLDER_PATH + "/asset_xrefs.csv")
-renewables = pd.read_csv(LOCAL_FOLDER_PATH + "/renewables_2023.csv")
-pricing = pd.read_csv(LOCAL_FOLDER_PATH + "/energy_gas_prices_2023.csv")
+BASE = "Data Required for CAPSTONE Modelling"
 
-electricity_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
+ASSET_XREF_FILE     = os.path.join(BASE, "asset_xrefs.csv")
+PRICING_FILE        = os.path.join(BASE, "Energy_Gas_Prices_2024.csv")
+RENEWABLES_FILE     = os.path.join(BASE, "Renewables_2024.csv")
+BID_FOLDER          = os.path.join(BASE, "2024 DAM Bid Data.zip") 
+
+asset_type = pd.read_csv(ASSET_XREF_FILE)
+renewables = pd.read_csv(RENEWABLES_FILE)
+pricing = pd.read_csv(PRICING_FILE)
+
+electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
-# Load 1 year of daily bid data
-folder_path = LOCAL_FOLDER_PATH + "/2023 DAM Bid Data"
+folder_path = BID_FOLDER
 files = sorted(glob.glob(os.path.join(folder_path, "*.csv")))
+
+#asset_type = pd.read_csv(LOCAL_FOLDER_PATH + "/asset_xrefs.csv")
+#renewables = pd.read_csv(LOCAL_FOLDER_PATH + "/renewables_2023.csv")
+#pricing = pd.read_csv(LOCAL_FOLDER_PATH + "/energy_gas_prices_2023.csv")
+
+#electricity_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
+#gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
+
+# Load 1 year of daily bid data
+#folder_path = LOCAL_FOLDER_PATH + "/2023 DAM Bid Data"
+#files = sorted(glob.glob(os.path.join(folder_path, "*.csv")))
 
 x = 365
 files_to_load = files[:x]
