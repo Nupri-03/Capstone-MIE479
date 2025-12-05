@@ -41,6 +41,8 @@ LOAD_FCST_FILE = os.path.join(BASE, "load_forecasts_2024.csv")
 OUT_DIR = os.path.join(BASE, "1001438rf_model_output")
 os.makedirs(OUT_DIR, exist_ok=True)
 
+#can change asset and model type 
+
 TARGET_ASSET = 1001438
 LOOKBACK_DAYS = 365
 SPLIT_DATE = pd.to_datetime("2024-11-01")  # Train before, val after
