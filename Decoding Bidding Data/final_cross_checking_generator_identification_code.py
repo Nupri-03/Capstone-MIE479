@@ -1,20 +1,13 @@
 import pandas as pd
 
-correct_answer = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\GEN_META_CAPSTONE.xlsx")
-
-jacob_matched = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\jacob-matched.xlsx")
-
-battery_confirmed = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\battery_code_output.xlsx")
-
-gas_confirmed = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\gas_code_output.xlsx")
-
-hydro_confirmed = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\hydro_code_output.xlsx")
-
+correct_answer = pd.read_excel(r"Capstone Info\GEN_META_CAPSTONE.xlsx")
+jacob_matched = pd.read_excel(r"Capstone Info\jacob-matched.xlsx")
+battery_confirmed = pd.read_excel(r"Capstone Info\battery_code_output.xlsx")
+gas_confirmed = pd.read_excel(r"Capstone Info\gas_code_output.xlsx")
+hydro_confirmed = pd.read_excel(r"Capstone Info\hydro_code_output.xlsx")
 hydro_confirmed['is_hydro'] = 'True'
-
-solar_confirmed = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\solar_code_output.xlsx")
-
-wind_confirmed = pd.read_excel(r"C:\Users\harvi\Desktop\Capstone Info\wind_code_output.xlsx")
+solar_confirmed = pd.read_excel(r"Capstone Info\solar_code_output.xlsx")
+wind_confirmed = pd.read_excel(r"Capstone Info\wind_code_output.xlsx")
 
 combo = pd.merge(gas_confirmed, battery_confirmed, on='asset_xref')
 combo = combo[['asset_xref','is_thermal_socal', 'is_thermal_pge', 'is_battery_candidate']]
@@ -76,4 +69,5 @@ print("Out of the 113 assets Jacob found, this is the split on what was accurate
 
 counts2 = counts/(counts[0] +  counts[1] + counts[2])
 print(counts2)
+
 
