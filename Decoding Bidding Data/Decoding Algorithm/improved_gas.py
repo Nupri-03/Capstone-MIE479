@@ -3,20 +3,40 @@ import datetime as dt
 import os
 import glob
 
-asset_type = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\asset_xrefs.csv")
+BASE = "Data Required for CAPSTONE Modelling"
 
-renewables = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\renewables_2023.csv")
+ASSET_XREF_FILE     = os.path.join(BASE, "asset_xrefs.csv")
+PRICING_FILE        = os.path.join(BASE, "Energy_Gas_Prices_2024.csv")
+RESOURCE_XREF_FILE  = os.path.join(BASE, "resource_xrefs.csv")
+RENEWABLES_FILE     = os.path.join(BASE, "Renewables_2024.csv")
+AGGREGRATE_FILE     = os.path.join(BASE, "aggregate_hourly_pricing.csv")
+BID_FOLDER          = os.path.join(BASE, "2024 DAM Bid Data.zip") 
 
-pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\energy_gas_prices_2023.csv")
+asset_type = pd.read_csv(ASSET_XREF_FILE)
+
+#asset_type = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\asset_xrefs.csv")
+
+#renewables = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\renewables_2023.csv")
+renewables = pd.read_csv(RENEWABLES_FILE)
+
+#pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\energy_gas_prices_2023.csv")
+#electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
+#gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
+
+pricing = pd.read_csv(PRICING_FILE)
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
-hourly_pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\aggregate_hourly_pricing.csv")
-
+#hourly_pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\aggregate_hourly_pricing.csv")
+hourly_pricing = pd.read_csv(AGGREGRATE_FILE)
 
 #Load in x number of days worth of data
-folder_path = r"C:\Users\harvi\OneDrive\Desktop\2023 DAM Bid Data"
-files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
+# folder_path = r"C:\Users\harvi\OneDrive\Desktop\2023 DAM Bid Data"
+# files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
+
+# Load X days of bidding data
+folder_path = BID_FOLDER
+files = sorted(glob.glob(os.path.join(folder_path, "*.csv")))
 
 x = 100 
 files_to_load = files[:x]  
@@ -239,4 +259,5 @@ def classify_gas_confidence(df):
 
 
 gas_scores = classify_gas_confidence(bids_with_prices)
+
 
