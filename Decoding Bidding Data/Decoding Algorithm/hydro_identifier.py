@@ -8,12 +8,21 @@ import glob
 # ============================================================
 # === LOAD DATA ==============================================
 # ============================================================
+BASE = "Data Required for CAPSTONE Modelling"
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
-electricity_pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\hourly_pricing_data.csv")
+ASSET_XREF_FILE     = os.path.join(BASE, "asset_xrefs.csv")
+PRICING_FILE        = os.path.join(BASE, "hourly_pricing_data.csv")
+BID_FOLDER          = os.path.join(BASE, "2024 DAM Bid Data.zip") 
 
-folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2023 DAM Bid Data"
-files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
+#asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+asset_type = pd.read_csv(ASSET_XREF_FILE)
+#electricity_pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\hourly_pricing_data.csv")
+electricity_pricing = pd.read_csv(PRICING_FILE)
+
+#folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2023 DAM Bid Data"
+#files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) # Load X days of bidding data
+folder_path = BID_FOLDER
+files = sorted(glob.glob(os.path.join(folder_path, "*.csv")))
 
 x = 365  # number of daily files to load
 files_to_load = files[:x]  
@@ -262,3 +271,4 @@ fig.suptitle("Monthly Average Generation — Likely Hydro Assets", fontsize=14)
 fig.tight_layout(rect=[0, 0, 1, 0.97])
 
 plt.show()
+
