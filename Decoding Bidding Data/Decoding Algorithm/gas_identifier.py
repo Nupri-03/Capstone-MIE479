@@ -10,15 +10,32 @@ import datetime as dt
 import os
 import glob
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+BASE = "Data Required for CAPSTONE Modelling"
 
-pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\energy_gas_prices_2023.csv")
+ASSET_XREF_FILE     = os.path.join(BASE, "asset_xrefs.csv")
+PRICING_FILE        = os.path.join(BASE, "Energy_Gas_Prices_2024.csv")
+RESOURCE_XREF_FILE  = os.path.join(BASE, "resource_xrefs.csv")
+BID_FOLDER          = os.path.join(BASE, "2024 DAM Bid Data.zip")   # unzip folder here
+
+asset_type = pd.read_csv(ASSET_XREF_FILE)
+
+pricing = pd.read_csv(PRICING_FILE)
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
+# Load X days of bidding data
+folder_path = BID_FOLDER
+files = sorted(glob.glob(os.path.join(folder_path, "*.csv")))
+
+#asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+
+#pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\Energy_Gas_Prices_2024.csv")
+#electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
+#gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
+
 #Load in x number of days worth of data
-folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2023 DAM Bid Data"
-files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
+#folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2024 DAM Bid Data.zip"
+#files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
 
 x = 365 
 files_to_load = files[:x]  
@@ -27,7 +44,8 @@ daily_dfs = [pd.read_csv(file) for file in files_to_load]
 one_day = pd.concat(daily_dfs, ignore_index=True)
 
 #This is the dataframe with the solar identified and some of the generators identified
-confirmed_assets = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\resource_xrefs.csv")
+#confirmed_assets = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\resource_xrefs.csv")
+confirmed_assets = pd.read_csv(RESOURCE_XREF_FILE)
 confirmed_assets = confirmed_assets[confirmed_assets['gen_type'] != 'SOLAR']
 confirmed_assets['asset_xref'] = confirmed_assets['resource_xref']
 
@@ -143,5 +161,6 @@ summary['is_thermal_pge']   = (summary['pct_in_range_pge'] >= 0.5) & (summary['t
 
 # print("Wrote: thermal_obs_socal.csv, thermal_obs_pge.csv, and asset_heatrate_summary_dualhub.csv")
 # print(f"Socal thermal obs: {len(thermal_obs_socal)}, PGE thermal obs: {len(thermal_obs_pge)}")
+
 
 
