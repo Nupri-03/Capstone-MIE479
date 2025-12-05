@@ -3,11 +3,20 @@ import datetime as dt
 import os
 import glob
 
-asset_type = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\asset_xrefs.csv")
+#asset_type = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\asset_xrefs.csv")
 
-renewables = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\renewables_2023.csv")
+#renewables = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\renewables_2023.csv")
 
-pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\energy_gas_prices_2023.csv")
+#pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\energy_gas_prices_2023.csv")
+
+BASE = "Data Required for CAPSTONE Modelling"
+
+asset_type = pd.read_csv(os.path.join(BASE, "asset_xrefs.csv"))
+
+renewables = pd.read_csv(os.path.join(BASE, "Renewables_2024.csv"))
+
+pricing = pd.read_csv(os.path.join(BASE, "Energy_Gas_Prices_2024.csv"))
+
 electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
 gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
@@ -15,7 +24,8 @@ hourly_pricing = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\hourly_pricing_da
 
 
 #Load in x number of days worth of data
-folder_path = r"C:\Users\harvi\OneDrive\Desktop\2023 DAM Bid Data"
+#folder_path = r"C:\Users\harvi\OneDrive\Desktop\2023 DAM Bid Data"
+folder_path = os.path.join(BASE, "2024 DAM Bid Data.zip")
 files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
 
 x = 20 
@@ -25,7 +35,8 @@ daily_dfs = [pd.read_csv(file) for file in files_to_load]
 one_day = pd.concat(daily_dfs, ignore_index=True)
 
 #This is the dataframe with the solar identified and some of the generators identified
-confirmed_assets = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\resource_xrefs.csv")
+#confirmed_assets = pd.read_csv(r"C:\Users\harvi\OneDrive\Desktop\resource_xrefs.csv")
+confirmed_assets = pd.read_csv(os.path.join(BASE, "resource_xrefs.csv"))
 confirmed_assets = confirmed_assets[confirmed_assets['gen_type'] != 'SOLAR']
 confirmed_assets['asset_xref'] = confirmed_assets['resource_xref']
 
@@ -163,4 +174,5 @@ bids_with_prices['NP15_Hourly_Price'] = bids_with_prices['TH_NP15_GEN-APND']
 bids_with_prices['SP15_Hourly_Price'] = bids_with_prices['TH_SP15_GEN-APND']
 
 bids_with_prices = bids_with_prices.drop(['TH_NP15_GEN-APND', 'TH_SP15_GEN-APND'], axis=1)
+
 
