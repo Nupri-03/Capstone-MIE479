@@ -9,9 +9,16 @@ import glob
 # === LOAD DATA ==============================================
 # ============================================================
 
-asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+# asset_type = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\asset_xrefs.csv")
+# folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2024 DAM Bid Data"
 
-folder_path = r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\2024 DAM Bid Data"
+ASSET_XREF_CSV = r"Data Required for CAPSTONE Modelling/asset_xrefs.csv"
+folder_path = r"Data Required for CAPSTONE Modelling/2024 DAM Bid Data.zip"
+
+# -------------------------------------------------------------------
+# Load base asset reference file
+# -------------------------------------------------------------------
+asset_type = pd.read_csv(ASSET_XREF_CSV)
 files = sorted(glob.glob(os.path.join(folder_path, "*.csv"))) 
 
 x = 365  # number of daily files to load
@@ -398,6 +405,7 @@ for c,model in models.items():
     )
     plt.suptitle(f"PDP — Cluster {c}")
     plt.show()
+
 
 
 
