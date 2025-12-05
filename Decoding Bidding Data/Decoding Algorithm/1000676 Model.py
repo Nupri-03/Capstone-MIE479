@@ -90,12 +90,23 @@ X_scaled = scaler.fit_transform(X)
 # print("\nCluster Price Summary:\n")
 # print(summary2)
 
-pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\Energy_Gas_Prices_2024.csv")
-electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
-gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
 
-load_forecast = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\load_forecasts_2024.csv")
+PRICING_CSV = r"Data Required for CAPSTONE Modelling/Energy_Gas_Prices_2024.csv"
+LOAD_FCST_CSV = r"Data Required for CAPSTONE Modelling/load_forecasts_2024.csv"
+
+pricing = pd.read_csv(PRICING_CSV)
+electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
+gas_pricing        = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
+
+load_forecast = pd.read_csv(LOAD_FCST_CSV)
 load_forecast = load_forecast[load_forecast['nodename'].isin(['CA ISO-TAC'])]
+
+#pricing = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\Energy_Gas_Prices_2024.csv")
+#electricty_pricing = pricing[pricing['exchangecode'].isin(["SQP", "DPN", "SDP", "UNP"])]
+#gas_pricing = pricing[pricing['exchangecode'].isin(["HHD", "PIG", "SCS"])]
+
+#load_forecast = pd.read_csv(r"C:\Users\jliu\OneDrive - Dynasty Power\Documents\load_forecasts_2024.csv")
+#load_forecast = load_forecast[load_forecast['nodename'].isin(['CA ISO-TAC'])]
 
 import re
 
@@ -405,6 +416,7 @@ for c,model in models.items():
     )
     plt.suptitle(f"PDP — Cluster {c}")
     plt.show()
+
 
 
 
